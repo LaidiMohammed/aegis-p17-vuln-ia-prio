@@ -3,21 +3,21 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from src import vuln-ia-prio_main
+from src import vuln_ia_prio_main
 
 
 def test_smoke_structure():
-    out = vuln-ia-prio_main.smoke("x", "y")
+    out = vuln_ia_prio_main.smoke("x", "y")
     assert out["ok"] is True
 
 
 def test_main_returns_0():
-    assert vuln-ia-prio_main.main([]) == 0
+    assert vuln_ia_prio_main.main([]) == 0
 
 
 def test_main_json_output():
     import contextlib, io, json
     with contextlib.redirect_stdout(io.StringIO()) as buf:
-        assert vuln-ia-prio_main.main(["--json"]) == 0
+        assert vuln_ia_prio_main.main(["--json"]) == 0
     data = json.loads(buf.getvalue())
     assert data["project"] == "P17"
